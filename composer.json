@@ -1,0 +1,30 @@
+{
+    "name": "takerukoushirou/roundcube-dovecot_client_ip",
+    "type": "roundcube-plugin",
+    "description": "Provides the HTTP client IP during IMAP connect to Dovecot in the form of an IMAP identifier for proper authentication penalty processing.",
+    "keywords": [ "roundcube", "dovecot", "client-ip", "reverse-proxy", "authentication-penalty", "imap-id", "imap-ident" ],
+    "homepage": "https://gitlab.com/takerukoushirou/roundcube-dovecot_client_ip",
+    "license": "GPL-3.0-or-later",
+    "version": "0.1.0",
+    "authors": [
+        {
+            "name": "Michael Maier",
+            "email": "michael.maier@xplo.re",
+            "role": "Developer"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://gitlab.com/takerukoushirou/roundcube-dovecot_client_ip"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "roundcube/plugin-installer": "*"
+    },
+    "support": {
+        "issues": "https://gitlab.com/takerukoushirou/roundcube-dovecot_client_ip/-/issues",
+        "source": "https://gitlab.com/takerukoushirou/roundcube-dovecot_client_ip"
+    }
+}
