@@ -29,7 +29,6 @@
  *
  * Takes reverse proxy headers into account to determine the actual client IP.
  *
- * @version 0.1
  * @author Michael Maier
  * @url https://gitlab.com/takerukoushirou/roundcube-dovecot_client_ip
  * @url https://doc.dovecot.org/settings/core/#login-trusted-networks
