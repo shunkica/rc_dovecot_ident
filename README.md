@@ -10,7 +10,7 @@ If the webmail server allows outgoing requests, Composer is the more comfortable
 
 ### Using Composer
 1. Get [Composer][getcomposer].
-1. Add the dependency `"takerukoushirou/roundcube-dovecot_client_ip": "*"` to the `require` section in the `composer.json` file of your RoundCube installation for the latest release version of the plugin. \
+1. Add the dependency `"takerukoushirou/roundcube-dovecot_client_ip": "*"` to the `require` section in the `composer.json` file of your RoundCube installation for the latest release version of the plugin.  
    Alternatively specify an exact version instead of `*` or use `dev-main` for the latest in-development version.
 1. Install with:
    ```sh
@@ -38,7 +38,7 @@ It may be advisable to keep multiple versions of the plugin in separate folders 
 ### RoundCube Webmail
 On a fresh installation, navigate to the plugin directory and copy `config.inc.php.dist` to `config.inc.php`.
 
-Edit `config.inc.php` within the plugin directory as needed. \
+Edit `config.inc.php` within the plugin directory as needed.  
 All options and their accepted values are described in `config.inc.php.dist`.
 
 To enable the plugin, add `dovecot_client_ip` to `$config['plugins']` in the Roundcube configuration.
@@ -52,7 +52,7 @@ Afterwards, Dovecot connection logs should show the actual client IP of users in
 
 
 ## License
-![GNU General Public License v3 logo][gpl-license-logo] \
+![GNU General Public License v3 logo][gpl-license-logo]  
 [GNU General Public License v3][gpl-license] or higher.
 See [LICENSE](LICENSE) file for details.
 > 
