@@ -2,8 +2,7 @@
 <project version="4">
   <component name="PhpCodeSniffer">
     <phpcs_settings>
-      <PhpCSConfiguration max_messages_per_file="100" tool_path="/usr/local/bin/phpcs" />
+      <PhpCSConfiguration tool_path="/usr/local/bin/phpcs" />
     </phpcs_settings>
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="5.5.0" />
 </project>
