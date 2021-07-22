@@ -47,7 +47,8 @@ To enable the plugin, add `dovecot_client_ip` to `$config['plugins']` in the Rou
 1. Add the IP addresses or networks of your RoundCube webmail servers to the `login_trusted_networks` setting in your Dovecot IMAP configuration.
    This disables authentication penalty processing for the configured webmail server IPs and enables processing of the `X-Originating-IP` ident value with the actual client IP provided by this plugin.
 1. Restart Dovecot IMAP.
-1. Afterwards, Dovecot connection logs should show the actual client IP of users instead of the webmail server IP in the `rip` (remote IP) field.
+
+Afterwards, Dovecot connection logs should show the actual client IP of users instead of the webmail server IP in the `rip` (remote IP) field.
 
 
 ## License
