@@ -25,12 +25,12 @@ php composer.phar update --no-dev
 
 ### Manual
 1. Download the latest release archive or checkout the latest release branch.
-1. Extract the contents into a folder named `dovecot_client_ip` within the `plugins` directory of your RoundCube installation.
+1. Extract the contents into a folder named `roundcube_dovecot_client_ip` within the `plugins` directory of your RoundCube installation.
 
 There are no external dependencies.
 
 Repeat manual installation for updates.
-It may be advisable to keep multiple versions of the plugin in separate folders and use a symlink named `dovecot_client_ip` to the latest version within the `plugins` directory instead.
+It may be advisable to keep multiple versions of the plugin in separate folders and use a symlink named `roundcube_dovecot_client_ip` to the latest version within the `plugins` directory instead.
 
 
 ## Configuration
@@ -41,7 +41,7 @@ On a fresh installation, navigate to the plugin directory and copy `config.inc.p
 Edit `config.inc.php` within the plugin directory as needed.  
 All options and their accepted values are described in `config.inc.php.dist`.
 
-To enable the plugin, add `dovecot_client_ip` to `$config['plugins']` in the Roundcube configuration.
+To enable the plugin, add `roundcube_dovecot_client_ip` to `$config['plugins']` in the Roundcube configuration.
 
 ### Dovecot IMAP
 1. Add the IP addresses or networks of your RoundCube webmail servers to the `login_trusted_networks` setting in your Dovecot IMAP configuration.

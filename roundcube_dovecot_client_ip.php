@@ -35,7 +35,7 @@
  * @url https://doc.dovecot.org/configuration_manual/authentication/auth_penalty/
  * @url https://doc.dovecot.org/configuration_manual/proxy_settings/
  */
-class dovecot_client_ip extends rcube_plugin
+class roundcube_dovecot_client_ip extends rcube_plugin
 {
 
     /**
@@ -43,7 +43,7 @@ class dovecot_client_ip extends rcube_plugin
      */
     public $task = 'mail';
 
-    const NS = 'dovecot_client_ip';
+    const NS = 'roundcube_dovecot_client_ip';
 
     const TrustedProxiesConfigKey = self::NS . '_trusted_proxies';
     const ProxyAllowPrivateClientIpConfigKey = self::NS . '_proxy_allow_private_client_ip';
