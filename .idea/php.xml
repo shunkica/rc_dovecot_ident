@@ -5,4 +5,10 @@
       <PhpCSConfiguration tool_path="/usr/local/bin/phpcs" />
     </phpcs_settings>
   </component>
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/../../external/roundcubemail/program/lib/Roundcube" />
+      <path value="$PROJECT_DIR$/../../external/roundcubemail/program/include" />
+    </include_path>
+  </component>
 </project>
