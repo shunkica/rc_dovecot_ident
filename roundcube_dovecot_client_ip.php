@@ -42,6 +42,7 @@ class roundcube_dovecot_client_ip extends rcube_plugin
      * @url https://github.com/roundcube/roundcubemail/wiki/Plugin-Hooks#task-mail
      * @url https://github.com/roundcube/roundcubemail/wiki/Plugin-Hooks#task-login
      */
+    // Both mail and login tasks invoke storage_connect callbacks.
     public $task = 'mail|login';
 
     const TrustedProxiesConfigKey = 'dovecot_client_ip_trusted_proxies';
@@ -97,7 +98,7 @@ class roundcube_dovecot_client_ip extends rcube_plugin
             }
 
             foreach ($client_headers as $header_key) {
-                if (!empty ($_SERVER[$header_key])) {
+                if (!empty($_SERVER[$header_key])) {
                     $ips = explode(',', $_SERVER[$header_key]);
 
                     foreach ($ips as $ip) {
