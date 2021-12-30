@@ -40,8 +40,9 @@ class roundcube_dovecot_client_ip extends rcube_plugin
 
     /**
      * @url https://github.com/roundcube/roundcubemail/wiki/Plugin-Hooks#task-mail
+     * @url https://github.com/roundcube/roundcubemail/wiki/Plugin-Hooks#task-login
      */
-    public $task = 'mail';
+    public $task = 'mail|login';
 
     const TrustedProxiesConfigKey = 'dovecot_client_ip_trusted_proxies';
     const ProxyAllowPrivateClientIpConfigKey = 'dovecot_client_ip_proxy_allow_private_client_ip';
