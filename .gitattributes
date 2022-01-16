@@ -1,0 +1,5 @@
+rsrc/			export-ignore
+
+.idea/			export-ignore
+.gitignore		export-ignore
+.gitlab-ci.yml	export-ignore
