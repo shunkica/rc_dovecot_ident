@@ -13,7 +13,7 @@
     ],
     "homepage": "https://gitlab.com/takerukoushirou/roundcube-dovecot_client_ip",
     "license": "GPL-3.0-or-later",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "authors": [
         {
             "name": "Michael Maier",
