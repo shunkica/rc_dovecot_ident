@@ -16,9 +16,10 @@
     "version": "2.0.0",
     "authors": [
         {
-            "name": "Michael Maier",
-            "email": "michael.maier@xplo.re",
-            "role": "Lead"
+            "name": "Michael Maier"
+        },
+        {
+            "name": "foorschtbar"
         }
     ],
     "repositories": [
