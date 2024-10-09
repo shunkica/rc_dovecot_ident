@@ -3,6 +3,7 @@
  * RoundCube Dovecot Client IP Plugin
  *
  * Copyright (C) 2021, Michael Maier
+ * Copyright (C) 2024, foorschtbar
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,12 +31,14 @@
  * Takes reverse proxy headers into account to determine the actual client IP.
  *
  * @author Michael Maier
+ * @author foorschtbar
+ * @url https://github.com/foorschtbar/dovecot_client_ip
  * @url https://gitlab.com/takerukoushirou/roundcube-dovecot_client_ip
  * @url https://doc.dovecot.org/settings/core/#login-trusted-networks
  * @url https://doc.dovecot.org/configuration_manual/authentication/auth_penalty/
  * @url https://doc.dovecot.org/configuration_manual/proxy_settings/
  */
-class roundcube_dovecot_client_ip extends rcube_plugin
+class dovecot_client_ip extends rcube_plugin
 {
 
     /**
@@ -57,7 +60,7 @@ class roundcube_dovecot_client_ip extends rcube_plugin
 
         $this->load_config();
 
-        $this->add_hook('storage_connect', [ $this, 'on_storage_connect' ]);
+        $this->add_hook('storage_connect', [$this, 'on_storage_connect']);
     }
 
     /**
@@ -80,34 +83,40 @@ class roundcube_dovecot_client_ip extends rcube_plugin
         $allow_private_client_ip = $this->rc->config->get(static::ProxyAllowPrivateClientIpConfigKey);
         $remoteAddress = trim($_SERVER['REMOTE_ADDR']);
 
-        if (is_array($trusted_proxies) and in_array($remoteAddress, $trusted_proxies)) {
-            // Request originates from trusted proxy. Process common headers.
-            $client_headers = [
-                'HTTP_CLIENT_IP',
-                'HTTP_X_FORWARDED_FOR',
-                'HTTP_X_FORWARDED',
-                'HTTP_X_CLUSTER_CLIENT_IP',
-                'HTTP_FORWARDED_FOR',
-                'HTTP_FORWARDED',
-                'REMOTE_ADDR',
-            ];
-            $filter_flags = FILTER_FLAG_NO_RES_RANGE;
+        if (is_array($trusted_proxies)) {
+            foreach ($trusted_proxies as $ip_to_check) {
+                if (CIDR::match($remoteAddress, $ip_to_check)) {
+                    // Request originates from trusted proxy. Process common headers.
+                    $client_headers = [
+                        'HTTP_CLIENT_IP',
+                        'HTTP_X_FORWARDED_FOR',
+                        'HTTP_X_FORWARDED',
+                        'HTTP_X_CLUSTER_CLIENT_IP',
+                        'HTTP_FORWARDED_FOR',
+                        'HTTP_FORWARDED',
+                        'REMOTE_ADDR',
+                    ];
+                    $filter_flags = FILTER_FLAG_NO_RES_RANGE;
 
-            if (!$allow_private_client_ip) {
-                $filter_flags |= FILTER_FLAG_NO_PRIV_RANGE;
-            }
+                    if (!$allow_private_client_ip) {
+                        $filter_flags |= FILTER_FLAG_NO_PRIV_RANGE;
+                    }
 
-            foreach ($client_headers as $header_key) {
-                if (!empty($_SERVER[$header_key])) {
-                    $ips = explode(',', $_SERVER[$header_key]);
+                    foreach ($client_headers as $header_key) {
+                        if (!empty($_SERVER[$header_key])) {
+                            $ips = explode(',', $_SERVER[$header_key]);
 
-                    foreach ($ips as $ip) {
-                        $ip = trim($ip);
+                            foreach ($ips as $ip) {
+                                $ip = trim($ip);
 
-                        if (false !== filter_var($ip, FILTER_VALIDATE_IP, $filter_flags)) {
-                            return $ip;
+                                if (false !== filter_var($ip, FILTER_VALIDATE_IP, $filter_flags)) {
+                                    return $ip;
+                                }
+                            }
                         }
                     }
+                    // If the client IP is trusted, we can skip the rest of the loop.
+                    break;
                 }
             }
         }
@@ -162,7 +171,6 @@ class roundcube_dovecot_client_ip extends rcube_plugin
 
         // Returned data is merged with arguments and provided back to the
         // IMAP connect method.
-        return [ $ident_key => $ident ];
+        return [$ident_key => $ident];
     }
-
 }
