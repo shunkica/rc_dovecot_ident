@@ -51,5 +51,4 @@ The following settings need to be applied to the Dovecot IMAP server:
 Afterwards, Dovecot connection logs should show the actual client IP of users instead of the webmail server IP in the `rip` (remote IP) field.
 
 ## Credits
-The original plugin was created by [Michael Maier](https://gitlab.com/takerukoushirou/roundcube-dovecot_client_ip) and is licensed under the GNU General Public License v3 or higher.
-```
+The original plugin was created by [Michael Maier](https://gitlab.com/takerukoushirou/roundcube-dovecot_client_ip) and is licensed under the GNU General Public License v3 or higher. I added the network (CIDR) support for the trusted proxies, renamed the plugin to remove the unnecessary `roundcube-` prefix and moved the project to GitHub.
