@@ -19,6 +19,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+require_once(__DIR__ . '/CIDR.php');
+
 /**
  * Dovecot Client IP
  *
@@ -60,7 +62,33 @@ class dovecot_client_ip extends rcube_plugin
 
         $this->load_config();
 
+        // Override config with environment variables if they exist
+        $this->load_env_config();
+
         $this->add_hook('storage_connect', [$this, 'on_storage_connect']);
+    }
+
+    /**
+     * Load configuration from environment variables if they exist
+     * Environment variables take precedence over config file
+     */
+    protected function load_env_config()
+    {
+        // Check for trusted proxies environment variable
+        $env_trusted_proxies = getenv('DOVECOT_CLIENT_IP_TRUSTED_PROXIES');
+        if ($env_trusted_proxies !== false) {
+            // Split by comma and trim whitespace
+            $trusted_proxies = array_map('trim', explode(',', $env_trusted_proxies));
+            $this->rc->config->set(static::TrustedProxiesConfigKey, $trusted_proxies);
+        }
+
+        // Check for allow private client IP environment variable
+        $env_allow_private = getenv('DOVECOT_CLIENT_IP_PROXY_ALLOW_PRIVATE_CLIENT_IP');
+        if ($env_allow_private !== false) {
+            // Convert to boolean (any non-empty value except "0", "false", "no" is considered true)
+            $allow_private = !in_array(strtolower($env_allow_private), ['0', 'false', 'no', '']);
+            $this->rc->config->set(static::ProxyAllowPrivateClientIpConfigKey, $allow_private);
+        }
     }
 
     /**
