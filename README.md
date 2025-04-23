@@ -42,6 +42,14 @@ When using Composer, the installation routine will ask whether to automatically 
 ### Options
 Copy the configuration variables from `config.inc.php.dist` to your global `config.inc.php` or create a new file named `config.inc.php` in the plugin directory and adjust the settings to your needs.
 
+#### Environment Variables
+Configuration can also be overridden using environment variables:
+
+- `DOVECOT_CLIENT_IP_TRUSTED_PROXIES`: Comma-separated list of trusted proxy IP addresses or CIDR ranges
+- `DOVECOT_CLIENT_IP_PROXY_ALLOW_PRIVATE_CLIENT_IP`: Set to "1", "true", or "yes" to allow private IP addresses from trusted proxies
+
+Environment variables take precedence over settings in the config files.
+
 ### Dovecot IMAP
 The following settings need to be applied to the Dovecot IMAP server:
 1. Add the IP addresses or networks of your RoundCube webmail servers to the `login_trusted_networks` setting in your Dovecot IMAP configuration.
