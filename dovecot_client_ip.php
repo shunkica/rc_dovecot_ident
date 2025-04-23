@@ -113,7 +113,7 @@ class dovecot_client_ip extends rcube_plugin
 
         if (is_array($trusted_proxies)) {
             foreach ($trusted_proxies as $ip_to_check) {
-                if (CIDR::match($remoteAddress, $ip_to_check)) {
+                if (dovecot_client_ip\CIDR::match($remoteAddress, $ip_to_check)) {
                     // Request originates from trusted proxy. Process common headers.
                     $client_headers = [
                         'HTTP_CLIENT_IP',

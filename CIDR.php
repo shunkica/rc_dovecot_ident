@@ -11,6 +11,8 @@
  * @copyright   Copyright (c) 2015 Frank Forte
  * @license     BSD-3 License https://opensource.org/licenses/BSD-3-Clause
  */
+
+ namespace dovecot_client_ip;
 class CIDR{
 
    /**
