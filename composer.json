@@ -13,7 +13,7 @@
     ],
     "homepage": "https://github.com/foorschtbar/dovecot_client_ip",
     "license": "GPL-3.0-or-later",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "authors": [
         {
             "name": "Michael Maier"
